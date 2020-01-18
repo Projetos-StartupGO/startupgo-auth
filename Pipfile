@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+django-debug-toolbar = "*"
+django-extensions = "*"
+black = "*"
+
+[packages]
+django = "*"
+python-decouple = "*"
+dj-database-url = "*"
+uwsgi = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
