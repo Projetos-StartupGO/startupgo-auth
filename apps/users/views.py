@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.http import JsonResponse
 
-# Create your views here.
+
+def get_public_key(request):
+    return JsonResponse(settings.JWT_PUBLIC_KEY)

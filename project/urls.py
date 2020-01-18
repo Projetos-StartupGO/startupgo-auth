@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from apps.users.views import get_public_key
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
+    path("o/", include("apps.oauth2.urls", namespace="oauth2_jwt")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("public_key.json", get_public_key, name="get_public_key"),
 ]
