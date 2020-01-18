@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+    postgres:
+        image: postgres:10.1-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        ports:
+            - 5432:5432
+    migration:
+        build: .
+        image: auth_image
+        command: python manage.py migrate --noinput
+        environment:
+            - SECRET_KEY='c6hxh3^sxfys(0v54s()12+wfr^a74as=w**ntzaw$e1m*c47k'
+            - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+            - DEBUG=True
+            - ALLOWED_HOSTS=*
+        depends_on:
+            - postgres
+    auth:
+        image: auth_image
+        environment:
+            - SECRET_KEY='c6hxh3^sxfys(0v54s()12+wfr^a74as=w**ntzaw$e1m*c47k'
+            - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+            - DEBUG=True
+            - ALLOWED_HOSTS=*
+        ports:
+            - 8080:8000
+        depends_on:
+            - migration
+            - postgres
+volumes:
+    postgres_data:

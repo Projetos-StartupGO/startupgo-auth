@@ -1,1 +1,1 @@
-default_app_config = "oauth2_provider_jwt.apps.AppConfig"
+default_app_config = "apps.oauth2.apps.AppConfig"

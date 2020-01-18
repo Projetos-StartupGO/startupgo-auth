@@ -20,6 +20,8 @@ django-cors-middleware = "*"
 cryptography = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
+psycopg2-binary = "*"
+pyjwt = {extras = ["crypto"],version = "*"}
 
 [requires]
 python_version = "3.7"
