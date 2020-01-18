@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from decouple import config, Csv
-from dj_database_url import parse as db_url
+from dj_database_url import config as db_url
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,7 +80,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 _DEFAULT_DB = ("sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")) if DEBUG else None
 
-DATABASES = {"default": config("DATABASE_URL", default=_DEFAULT_DB, cast=db_url)}
+DATABASES = {"default": db_url()}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
