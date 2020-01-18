@@ -8,6 +8,7 @@ pylint = "*"
 django-debug-toolbar = "*"
 django-extensions = "*"
 black = "*"
+flake8 = "*"
 
 [packages]
 django = "*"

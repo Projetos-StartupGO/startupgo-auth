@@ -21,7 +21,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(), default='')
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default="")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "apps.users",
 ]
 
 MIDDLEWARE = [
@@ -40,6 +41,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -62,15 +64,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "project.wsgi.application"
 
-_DEFAULT_DB = ('sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')) if DEBUG else None
+_DEFAULT_DB = ("sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")) if DEBUG else None
 
-DATABASES = {
-    'default': config(
-        'DATABASE_URL',
-        default=_DEFAULT_DB,
-        cast=db_url
-    )
-}
+DATABASES = {"default": config("DATABASE_URL", default=_DEFAULT_DB, cast=db_url)}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -87,3 +83,4 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = "/static/"
+AUTH_USER_MODEL = "users.User"
