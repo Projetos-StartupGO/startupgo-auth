@@ -4,8 +4,9 @@ from django.db import migrations
 
 
 def create_innital_base_variables(apps, schema_editor):
-    User = apps.get_model("users", "User")
-    User.objects.create_superuser("rayancocos@gmail.com", "RayanMotta1234")
+    from apps.users.models import User
+
+    User.objects.create_superuser(email="admin@admin.com", password="Admin@@123#")
 
 
 class Migration(migrations.Migration):
