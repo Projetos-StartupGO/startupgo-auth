@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<main>
+    <div>
+        <div class="container margin_60_35">
+            <div id="login">
+                <h1>Cadastre-se</h1>
+                <div class="box_form">
+                    <form method="POST" action="." novalidate>
+                        {% csrf_token %}
+                        <!-- <input type="hidden" name="next" value="{{ next }}" />
+
+                        <a href="#0" class="social_bt facebook">Login com Facebook</a>
+                        <a href="#0" class="social_bt google">Login com Google</a>
+                        <a href="#0" class="social_bt linkedin">Login com Linkedin</a>
+                        <div class="divider"><span>Ou</span></div> -->
+                        {{form | crispy}}
+                    </form>
+                </div>
+                <p class="text-center link_bright">
+                    Já tem uma conta? <a href="{% url 'login' %}"><strong>Faça Login!</strong></a>
+                </p>
+            </div>
+            <!-- /login -->
+        </div>
+    </div>
+</main>
+{% endblock content %}
